@@ -1,0 +1,21 @@
+{
+  "name": "Exutoire & DnD",
+  "short_name": "Exutoire",
+  "start_url": "Accueil.html",
+  "display": "standalone",
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "icons": [
+    {
+      "src": "dé20.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "dé20.jpg  ",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
+
