@@ -12,14 +12,14 @@ function initLockScreen() {
   const lock = $('lock'); if (!lock) return;
   if (!localStorage.getItem('pin')) {
     lock.innerHTML = `
-      <h1>Exutoire</h1>
+      <h1>Grimoir et Pantoufles</h1>
       <p>Crée ton code secret pour commencer</p>
       <input type="password" id="newPin" placeholder="Nouveau PIN">
       <button onclick="createPin()">Créer le PIN</button>
     `;
   } else {
     lock.innerHTML = `
-      <h1>Exutoire</h1>
+      <h1>Grimoir et Pantoufles</h1>
       <p>Accès sécurisé</p>
       <input type="password" id="pin" placeholder="Code secret">
       <button onclick="unlock()">Déverrouiller</button>
@@ -56,3 +56,4 @@ function saveHP(){ if(!currentChar){ alert('Aucun personnage sélectionné'); re
 
 window.addEventListener('DOMContentLoaded', ()=>{
   initLockScreen(); const t = $('text'); if(t) t.value = localStorage.getItem('journal') || ''; renderCharacters(); renderItems(); const capEl = $('carryCapacity'); if(capEl){ const stored = localStorage.getItem('carryCapacity'); if(stored) capEl.value = stored; capEl.addEventListener('change', ()=>{ if(currentChar){ characters[currentChar] = characters[currentChar] || {}; characters[currentChar].carryCapacity = capEl.value; localStorage.setItem('characters', JSON.stringify(characters)); } else { localStorage.setItem('carryCapacity', capEl.value); } renderItems(); }); } });
+
