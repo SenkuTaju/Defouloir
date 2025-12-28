@@ -18,7 +18,7 @@ function initLockScreen() {
   if (!lock) return;
   if (!localStorage.getItem('pin')) {
     lock.innerHTML = `
-      <h1>Exutoire</h1>
+      <h1>Grimoir et Pantoufles</h1>
       <p>Crée ton code secret pour commencer</p>
       <input type="password" id="newPin" placeholder="Nouveau PIN">
       <button id="createPinBtn">Créer le PIN</button>
@@ -26,7 +26,7 @@ function initLockScreen() {
     const btn = $('createPinBtn'); if (btn) btn.addEventListener('click', createPin);
   } else {
     lock.innerHTML = `
-      <h1>Exutoire</h1>
+      <h1>Grimoir et Pantoufles</h1>
       <p>Accès sécurisé</p>
       <input type="password" id="pin" placeholder="Code secret">
       <button id="unlockBtn">Déverrouiller</button>
@@ -215,6 +215,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // initial renders
   renderCharacters(); renderItems();
 });
+
 
 
 
