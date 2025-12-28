@@ -1,6 +1,6 @@
 {
   "name": "Exutoire & DnD",
-  "short_name": "Exutoire",
+  "short_name": "Grimoir et Pantoufles",
   "start_url": "Accueil.html",
   "display": "standalone",
   "background_color": "#111111",
@@ -18,4 +18,5 @@
     }
   ]
 }
+
 
