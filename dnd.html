@@ -2,124 +2,96 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Grimoir & Pantoufles - D&D</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DnD - Grimoire & Pantoufles</title>
   <link rel="stylesheet" href="style.css">
-  <meta name="theme-color" content="#111111">
   <script src="app_merged.js" defer></script>
 </head>
 <body>
-  <header>
-    <h1>🎲 Gestion du personnage</h1>
-    <div style="margin-bottom:10px;">
-      <button onclick="gotoo('Accueil.html')">🏠 Accueil</button>
-      <button onclick="gotoo('create-character.html')">🧙 Créer un perso</button>
-    </div>
-  </header>
+<section id="dnd" class="tab">
+  <button onclick="gotoo('Accueil.html')">🏠 Accueil</button>
 
-  <section id="dnd">
-    <h2>Personnage</h2>
-    <div style="display:flex; gap:8px; align-items:center; margin-bottom:10px;">
-      <select id="characterSelect" onchange="loadCharacter()" style="flex:1;"></select>
-      <button onclick="deleteCharacter()">❌ Supprimer</button>
-    </div>
-    <input id="charName" placeholder="Nom du personnage">
+  <h2>🎲 Personnage</h2>
+  <select id="characterSelect" onchange="loadCharacter()"></select>
+  <button onclick="deleteCharacter()">🗑 Supprimer le personnage</button>
+  <input id="charName" placeholder="Nom du personnage">
+  <button onclick="saveCharacter()">💾 Sauver</button>
 
-    <h3>PV</h3>
-    <div style="display:flex;gap:8px;align-items:center">
-      <input type="number" id="hp" placeholder="PV actuels" style="width:120px">
-      <input type="number" id="maxHp" placeholder="PV max" style="width:120px">
-      <button onclick="saveHP()">💾 Sauver PV</button>
-    </div>
+  <h3>PV</h3>
+  <div style="display:flex;gap:8px;align-items:center">
+    <input type="number" id="hp" placeholder="PV actuels" style="width:120px">
+    <input type="number" id="maxHp" placeholder="PV max" style="width:120px">
+  </div>
 
-    <h3>Caractéristiques</h3>
-    <div class="grid">
-      <label>Force <input type="number" id="for" style="width:60px"></label>
-      <label>Dextérité <input type="number" id="dex" style="width:60px"></label>
-      <label>Constitution <input type="number" id="con" style="width:60px"></label>
-      <label>Intelligence <input type="number" id="int" style="width:60px"></label>
-      <label>Sagesse <input type="number" id="sag" style="width:60px"></label>
-      <label>Charisme <input type="number" id="cha" style="width:60px"></label>
-    </div>
+  <h2>Caractéristiques</h2>
+  <div class="grid">
+    <label>Force <input type="number" id="for" value="10"></label>
+    <label>Dextérité <input type="number" id="dex" value="10"></label>
+    <label>Constitution <input type="number" id="con" value="10"></label>
+    <label>Intelligence <input type="number" id="int" value="10"></label>
+    <label>Sagesse <input type="number" id="sag" value="10"></label>
+    <label>Charisme <input type="number" id="cha" value="10"></label>
+  </div>
 
-    <h3>Jets de sauvegarde</h3>
-    <div id="saves" class="grid">
-      <label><input type="checkbox" value="force"> Force</label>
-      <label><input type="checkbox" value="dexterite"> Dextérité</label>
-      <label><input type="checkbox" value="constitution"> Constitution</label>
-      <label><input type="checkbox" value="intelligence"> Intelligence</label>
-      <label><input type="checkbox" value="sagesse"> Sagesse</label>
-      <label><input type="checkbox" value="charisme"> Charisme</label>
-    </div>
+  <h2>Jets de sauvegarde</h2>
+  <div id="saves">
+    <label><input type="checkbox" value="force"> Force</label>
+    <label><input type="checkbox" value="dexterite"> Dextérité</label>
+    <label><input type="checkbox" value="constitution"> Constitution</label>
+    <label><input type="checkbox" value="intelligence"> Intelligence</label>
+    <label><input type="checkbox" value="sagesse"> Sagesse</label>
+    <label><input type="checkbox" value="charisme"> Charisme</label>
+  </div>
 
-    <h3>Compétences</h3>
-    <div id="skills" class="grid">
-      <label><input type="checkbox" value="acrobaties"> Acrobaties (DEX)</label>
-      <label><input type="checkbox" value="athletisme"> Athlétisme (FOR)</label>
-      <label><input type="checkbox" value="dressage"> Dressage (SAG)</label>
-      <label><input type="checkbox" value="arcanes"> Arcanes (INT)</label>
-      <label><input type="checkbox" value="tromperie"> Tromperie (CHA)</label>
-      <label><input type="checkbox" value="histoire"> Histoire (INT)</label>
-      <label><input type="checkbox" value="intimidation"> Intimidation (CHA)</label>
-      <label><input type="checkbox" value="investigation"> Investigation (INT)</label>
-      <label><input type="checkbox" value="medecine"> Médecine (SAG)</label>
-      <label><input type="checkbox" value="nature"> Nature (INT)</label>
-      <label><input type="checkbox" value="perception"> Perception (SAG)</label>
-      <label><input type="checkbox" value="perspicacite"> Perspicacité (SAG)</label>
-      <label><input type="checkbox" value="representation"> Représentation (CHA)</label>
-      <label><input type="checkbox" value="persuasion"> Persuasion (CHA)</label>
-      <label><input type="checkbox" value="religion"> Religion (INT)</label>
-      <label><input type="checkbox" value="escamotage"> Escamotage (DEX)</label>
-      <label><input type="checkbox" value="discretion"> Discrétion (DEX)</label>
-      <label><input type="checkbox" value="survie"> Survie (SAG)</label>
-    </div>
+  <h2>Compétences</h2>
+  <div id="skills">
+    <label><input type="checkbox" value="acrobaties"> Acrobaties (DEX)</label>
+    <label><input type="checkbox" value="athletisme"> Athlétisme (FOR)</label>
+    <label><input type="checkbox" value="dressage"> Dressage (SAG)</label>
+    <label><input type="checkbox" value="arcanes"> Arcanes (INT)</label>
+    <label><input type="checkbox" value="tromperie"> Tromperie (CHA)</label>
+    <label><input type="checkbox" value="histoire"> Histoire (INT)</label>
+    <label><input type="checkbox" value="intimidation"> Intimidation (CHA)</label>
+    <label><input type="checkbox" value="investigation"> Investigation (INT)</label>
+    <label><input type="checkbox" value="medecine"> Médecine (SAG)</label>
+    <label><input type="checkbox" value="nature"> Nature (INT)</label>
+    <label><input type="checkbox" value="perception"> Perception (SAG)</label>
+    <label><input type="checkbox" value="perspicacite"> Perspicacité (SAG)</label>
+    <label><input type="checkbox" value="representation"> Représentation (CHA)</label>
+    <label><input type="checkbox" value="persuasion"> Persuasion (CHA)</label>
+    <label><input type="checkbox" value="religion"> Religion (INT)</label>
+    <label><input type="checkbox" value="escamotage"> Escamotage (DEX)</label>
+    <label><input type="checkbox" value="discretion"> Discrétion (DEX)</label>
+    <label><input type="checkbox" value="survie"> Survie (SAG)</label>
+  </div>
 
-    <h3>Inventaire</h3>
-    <div style="display:flex;gap:8px;align-items:center">
-      <input id="item" placeholder="Nom de l'item">
-      <input type="number" id="itemQty" placeholder="Quantité" min="1" value="1" style="width:60px">
-      <input type="number" id="itemWeight" placeholder="Poids/unité" min="0" step="0.1" value="1" style="width:60px">
-      <button onclick="addItem()">Ajouter</button>
-    </div>
-    <div>
-      Poids total: <strong id="totalWeight">0</strong>
-      / Capacité: <input type="number" id="carryCapacity" value="100" style="width:80px"> kg
-    </div>
-    <ul id="items"></ul>
+  <h2>Données de combat</h2>
+  <label>Bonus de maîtrise <input type="number" id="prof" value="2"></label>
+  <label>Classe d’armure <input type="number" id="ca" value="10"></label>
+  <label>Vitesse <input type="number" id="speed" value="9"></label>
+  <label>Dés de vie <input id="hitDice" value="1d8"></label>
+  <label>Perception passive <input type="number" id="ppassive"></label>
 
-    <h3>Portemonnaie 💰</h3>
-    <div style="display:flex; gap:8px; flex-wrap:wrap;">
-      <div>PC <button onclick="changeMoney('pc',-1)">-</button> <span id="pcVal">0</span> <button onclick="changeMoney('pc',1)">+</button></div>
-      <div>PA <button onclick="changeMoney('pa',-1)">-</button> <span id="paVal">0</span> <button onclick="changeMoney('pa',1)">+</button></div>
-      <div>PO <button onclick="changeMoney('po',-1)">-</button> <span id="poVal">0</span> <button onclick="changeMoney('po',1)">+</button></div>
-      <div>PE <button onclick="changeMoney('pe',-1)">-</button> <span id="peVal">0</span> <button onclick="changeMoney('pe',1)">+</button></div>
-      <div>PP <button onclick="changeMoney('pp',-1)">-</button> <span id="ppVal">0</span> <button onclick="changeMoney('pp',1)">+</button></div>
-    </div>
+  <h2>Inventaire</h2>
+  <div class="inventory-controls">
+    <input id="item" placeholder="Nom de l'item">
+    <input type="number" id="itemQty" placeholder="Quantité" min="1" value="1">
+    <input type="number" id="itemWeight" placeholder="Poids/unité" min="0" step="0.1" value="1">
+    <button onclick="addItem()">Ajouter</button>
+  </div>
+  <div>
+    Poids total: <strong id="totalWeight">0</strong> / Capacité: <input type="number" id="carryCapacity" value="100">
+  </div>
+  <ul id="items"></ul>
 
-    <h3>Données de combat</h3>
-    <label>Classe d’armure <input type="number" id="ca" style="width:60px"></label>
-    <label>Vitesse <input type="number" id="speed" style="width:60px"></label>
-    <label>Dés de vie <input id="hitDice" style="width:60px"></label>
-    <label>Bonus de maîtrise <input type="number" id="prof" style="width:60px"></label>
-    <label>Perception passive <input type="number" id="ppassive" style="width:60px"></label>
-
-  </section>
-
-  <script>
-    // Supprimer le perso sélectionné
-    function deleteCharacter() {
-      const sel = document.getElementById('characterSelect');
-      if (!sel || !sel.value) return alert('Aucun personnage sélectionné');
-      if (!confirm(`Supprimer le personnage ${sel.value} ?`)) return;
-
-      const characters = JSON.parse(localStorage.getItem('characters') || '{}');
-      delete characters[sel.value];
-      localStorage.setItem('characters', JSON.stringify(characters));
-      alert('Personnage supprimé');
-      sel.value = '';
-      window.location.reload();
-    }
-  </script>
+  <h2>💰 Portemonnaie</h2>
+  <div class="money">
+    <div>PC <button onclick="changeMoney('pc',-1)">➖</button> <span id="pcVal">0</span> <button onclick="changeMoney('pc',1)">➕</button></div>
+    <div>PA <button onclick="changeMoney('pa',-1)">➖</button> <span id="paVal">0</span> <button onclick="changeMoney('pa',1)">➕</button></div>
+    <div>PO <button onclick="changeMoney('po',-1)">➖</button> <span id="poVal">0</span> <button onclick="changeMoney('po',1)">➕</button></div>
+    <div>PE <button onclick="changeMoney('pe',-1)">➖</button> <span id="peVal">0</span> <button onclick="changeMoney('pe',1)">➕</button></div>
+    <div>PP <button onclick="changeMoney('pp',-1)">➖</button> <span id="ppVal">0</span> <button onclick="changeMoney('pp',1)">➕</button></div>
+  </div>
+</section>
 </body>
 </html>
-
