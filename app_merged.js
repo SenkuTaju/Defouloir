@@ -222,3 +222,5 @@ window.addEventListener('DOMContentLoaded', () => {
   renderCharacters();
 });
 
+function addsort() {
+
