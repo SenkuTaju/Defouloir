@@ -18,29 +18,29 @@ function createCharacter() {
     isNPC: document.getElementById("isNPC").checked,
 
     stats: {
-      force: + fo.value,
-      dexterite: +dex.value,
-      constitution: +con.value,
-      intelligence: +int.value,
-      sagesse: +sag.value,
-      charisme: +cha.value
+      force: +document.getElementById("for").value,
+      dexterite: +document.getElementById("dex").value,
+      constitution: +document.getElementById("con").value,
+      intelligence: +document.getElementById("int").value,
+      sagesse: +document.getElementById("sag").value,
+      charisme: +document.getElementById("cha").value
     },
 
     saves: getChecked("saves"),
     skills: getChecked("skills"),
 
-    proficiencyBonus: +prof.value,
-    armorClass: +ca.value,
-    speed: +speed.value,
-    hitDice: hitDice.value,
-    passivePerception: +ppassive.value,
+    proficiencyBonus: +document.getElementById("prof").value,
+    armorClass: +document.getElementById("ca").value,
+    speed: +document.getElementById("speed").value,
+    hitDice: document.getElementById("hitDice").value,
+    passivePerception: +document.getElementById("ppassive").value,
 
     money: {
-      pc: +pc.value,
-      pa: +pa.value,
-      po: +po.value,
-      pe: +pe.value,
-      pp: +pp.value
+      pc: +document.getElementById("pc").value || 0,
+      pa: +document.getElementById("pa").value || 0,
+      po: +document.getElementById("po").value || 0,
+      pe: +document.getElementById("pe").value || 0,
+      pp: +document.getElementById("pp").value || 0
     },
 
     spells: [],
@@ -54,4 +54,3 @@ function createCharacter() {
   alert("Personnage créé !");
   window.location.href = "dnd.html";
 }
-
