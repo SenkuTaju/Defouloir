@@ -19,7 +19,10 @@
 
   <section id="dnd">
     <h2>Personnage</h2>
-    <select id="characterSelect" onchange="loadCharacter()"></select>
+    <div style="display:flex; gap:8px; align-items:center; margin-bottom:10px;">
+      <select id="characterSelect" onchange="loadCharacter()"></select>
+      <button onclick="deleteCharacter()">❌ Supprimer</button>
+    </div>
     <input id="charName" placeholder="Nom du personnage">
 
     <h3>PV</h3>
@@ -37,6 +40,38 @@
       <label>Intelligence <input type="number" id="int" style="width:60px"></label>
       <label>Sagesse <input type="number" id="sag" style="width:60px"></label>
       <label>Charisme <input type="number" id="cha" style="width:60px"></label>
+    </div>
+
+    <h3>Jets de sauvegarde</h3>
+    <div id="saves" class="grid">
+      <label><input type="checkbox" value="force"> Force</label>
+      <label><input type="checkbox" value="dexterite"> Dextérité</label>
+      <label><input type="checkbox" value="constitution"> Constitution</label>
+      <label><input type="checkbox" value="intelligence"> Intelligence</label>
+      <label><input type="checkbox" value="sagesse"> Sagesse</label>
+      <label><input type="checkbox" value="charisme"> Charisme</label>
+    </div>
+
+    <h3>Compétences</h3>
+    <div id="skills" class="grid">
+      <label><input type="checkbox" value="acrobaties"> Acrobaties (DEX)</label>
+      <label><input type="checkbox" value="athletisme"> Athlétisme (FOR)</label>
+      <label><input type="checkbox" value="dressage"> Dressage (SAG)</label>
+      <label><input type="checkbox" value="arcanes"> Arcanes (INT)</label>
+      <label><input type="checkbox" value="tromperie"> Tromperie (CHA)</label>
+      <label><input type="checkbox" value="histoire"> Histoire (INT)</label>
+      <label><input type="checkbox" value="intimidation"> Intimidation (CHA)</label>
+      <label><input type="checkbox" value="investigation"> Investigation (INT)</label>
+      <label><input type="checkbox" value="medecine"> Médecine (SAG)</label>
+      <label><input type="checkbox" value="nature"> Nature (INT)</label>
+      <label><input type="checkbox" value="perception"> Perception (SAG)</label>
+      <label><input type="checkbox" value="perspicacite"> Perspicacité (SAG)</label>
+      <label><input type="checkbox" value="representation"> Représentation (CHA)</label>
+      <label><input type="checkbox" value="persuasion"> Persuasion (CHA)</label>
+      <label><input type="checkbox" value="religion"> Religion (INT)</label>
+      <label><input type="checkbox" value="escamotage"> Escamotage (DEX)</label>
+      <label><input type="checkbox" value="discretion"> Discrétion (DEX)</label>
+      <label><input type="checkbox" value="survie"> Survie (SAG)</label>
     </div>
 
     <h3>Inventaire</h3>
@@ -67,6 +102,23 @@
     <label>Dés de vie <input id="hitDice" style="width:60px"></label>
     <label>Bonus de maîtrise <input type="number" id="prof" style="width:60px"></label>
     <label>Perception passive <input type="number" id="ppassive" style="width:60px"></label>
+
   </section>
+
+  <script>
+    // Supprimer le perso sélectionné
+    function deleteCharacter() {
+      const sel = document.getElementById('characterSelect');
+      if (!sel || !sel.value) return alert('Aucun personnage sélectionné');
+      if (!confirm(`Supprimer le personnage ${sel.value} ?`)) return;
+
+      const characters = JSON.parse(localStorage.getItem('characters') || '{}');
+      delete characters[sel.value];
+      localStorage.setItem('characters', JSON.stringify(characters));
+      alert('Personnage supprimé');
+      sel.value = '';
+      window.location.reload();
+    }
+  </script>
 </body>
 </html>
