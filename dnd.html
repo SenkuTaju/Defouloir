@@ -38,6 +38,47 @@
       / Capacité: <input type="number" id="carryCapacity" value="100" style="width:80px"> kg
     </div>
     <ul id="items"></ul>
+  <section class="card">
+  <h2>💰 Portemonnaie</h2>
+
+  <div class="money">
+    <div>
+      PC
+      <button onclick="changeMoney('pc', -1)">➖</button>
+      <span id="pcVal">0</span>
+      <button onclick="changeMoney('pc', 1)">➕</button>
+    </div>
+
+    <div>
+      PA
+      <button onclick="changeMoney('pa', -1)">➖</button>
+      <span id="paVal">0</span>
+      <button onclick="changeMoney('pa', 1)">➕</button>
+    </div>
+
+    <div>
+      PO
+      <button onclick="changeMoney('po', -1)">➖</button>
+      <span id="poVal">0</span>
+      <button onclick="changeMoney('po', 1)">➕</button>
+    </div>
+
+    <div>
+      PE
+      <button onclick="changeMoney('pe', -1)">➖</button>
+      <span id="peVal">0</span>
+      <button onclick="changeMoney('pe', 1)">➕</button>
+    </div>
+
+    <div>
+      PP
+      <button onclick="changeMoney('pp', -1)">➖</button>
+      <span id="ppVal">0</span>
+      <button onclick="changeMoney('pp', 1)">➕</button>
+    </div>
+  </div>
+</section>
+
   </section>
 </body>
 <script>
@@ -46,7 +87,31 @@ if ('serviceWorker' in navigator) {
   .then(() => console.log('Service Worker enregistré'))
   .catch(err => console.log('Erreur SW', err));
 }
+  function renderMoney() {
+  const c = getCurrentCharacter();
+  if (!c) return;
+
+  c.money = c.money || { pc:0, pa:0, po:0, pe:0, pp:0 };
+
+  ['pc','pa','po','pe','pp'].forEach(k => {
+    const el = document.getElementById(k + 'Val');
+    if (el) el.textContent = c.money[k] || 0;
+  });
+}
+
+function changeMoney(type, delta) {
+  const c = getCurrentCharacter();
+  if (!c) return;
+
+  c.money = c.money || { pc:0, pa:0, po:0, pe:0, pp:0 };
+  c.money[type] = Math.max(0, (c.money[type] || 0) + delta);
+
+  localStorage.setItem('characters', JSON.stringify(characters));
+  renderMoney();
+}
+
 </script>
 
 
 </html>
+
