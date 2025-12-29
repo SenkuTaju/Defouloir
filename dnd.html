@@ -98,7 +98,7 @@ if ('serviceWorker' in navigator) {
     if (el) el.textContent = c.money[k] || 0;
   });
 }
-
+function gotoo(path) { window.location.href = path; }
 function changeMoney(type, delta) {
   const c = getCurrentCharacter();
   if (!c) return;
@@ -114,6 +114,7 @@ function changeMoney(type, delta) {
 
 
 </html>
+
 
 
 
