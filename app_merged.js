@@ -20,14 +20,14 @@ function initLockScreen() {
 
   if (!localStorage.getItem('pin')) {
     lock.innerHTML = `
-      <h1>Grimoire & Dés</h1>
+      <h1>Grimoire & Pantoufles</h1>
       <p>Crée ton code secret</p>
       <input type="password" id="newPin" placeholder="Nouveau PIN">
       <button onclick="createPin()">Créer</button>
     `;
   } else {
     lock.innerHTML = `
-      <h1>Grimoire & Dés</h1>
+      <h1>Grimoire & Pantoufles</h1>
       <p>Accès sécurisé</p>
       <input type="password" id="pin" placeholder="Code secret">
       <button onclick="unlock()">Déverrouiller</button>
@@ -221,3 +221,4 @@ window.addEventListener('DOMContentLoaded', () => {
 
   renderCharacters();
 });
+
