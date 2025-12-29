@@ -1,0 +1,74 @@
+<h1>🧙 Création de personnage</h1>
+
+<label>
+  <input type="checkbox" id="isNPC" onchange="toggleNPC()">
+  PNJ (non joueur)
+</label>
+
+<hr>
+
+<h2>Nom</h2>
+<input id="charName">
+
+<h2>Caractéristiques</h2>
+<div class="grid">
+  <label>Force <input type="number" id="for" value="10"></label>
+  <label>Dextérité <input type="number" id="dex" value="10"></label>
+  <label>Constitution <input type="number" id="con" value="10"></label>
+  <label>Intelligence <input type="number" id="int" value="10"></label>
+  <label>Sagesse <input type="number" id="sag" value="10"></label>
+  <label>Charisme <input type="number" id="cha" value="10"></label>
+</div>
+
+<h2>Jets de sauvegarde</h2>
+<div id="saves">
+  <label><input type="checkbox" value="force"> Force</label>
+  <label><input type="checkbox" value="dexterite"> Dextérité</label>
+  <label><input type="checkbox" value="constitution"> Constitution</label>
+  <label><input type="checkbox" value="intelligence"> Intelligence</label>
+  <label><input type="checkbox" value="sagesse"> Sagesse</label>
+  <label><input type="checkbox" value="charisme"> Charisme</label>
+</div>
+
+<h2>Compétences</h2>
+<div id="skills">
+  <label><input type="checkbox" value="acrobaties"> Acrobaties (DEX)</label>
+  <label><input type="checkbox" value="athletisme"> Athlétisme (FOR)</label>
+  <label><input type="checkbox" value="dressage"> Dressage (SAG)</label>
+  <label><input type="checkbox" value="arcanes"> Arcanes (INT)</label>
+  <label><input type="checkbox" value="tromperie"> Tromperie (CHA)</label>
+  <label><input type="checkbox" value="histoire"> Histoire (INT)</label>
+  <label><input type="checkbox" value="intimidation"> Intimidation (CHA)</label>
+  <label><input type="checkbox" value="investigation"> Investigation (INT)</label>
+  <label><input type="checkbox" value="medecine"> Médecine (SAG)</label>
+  <label><input type="checkbox" value="nature"> Nature (INT)</label>
+  <label><input type="checkbox" value="perception"> Perception (SAG)</label>
+  <label><input type="checkbox" value="perspicacite"> Perspicacité (SAG)</label>
+  <label><input type="checkbox" value="representation"> Représentation (CHA)</label>
+  <label><input type="checkbox" value="persuasion"> Persuasion (CHA)</label>
+  <label><input type="checkbox" value="religion"> Religion (INT)</label>
+  <label><input type="checkbox" value="escamotage"> Escamotage (DEX)</label>
+  <label><input type="checkbox" value="discretion"> Discrétion (DEX)</label>
+  <label><input type="checkbox" value="survie"> Survie (SAG)</label>
+</div>
+
+
+<h2>Données de combat</h2>
+<label>Bonus de maîtrise <input type="number" id="prof" value="2"></label>
+<label>Classe d’armure <input type="number" id="ca" value="10"></label>
+<label>Vitesse <input type="number" id="speed" value="9"></label>
+<label>Dés de vie <input id="hitDice" value="1d8"></label>
+<label>Perception passive <input type="number" id="ppassive"></label>
+
+<h2>Portemonnaie</h2>
+<div class="grid">
+  <label>PC <input type="number" id="pc"></label>
+  <label>PA <input type="number" id="pa"></label>
+  <label>PO <input type="number" id="po"></label>
+  <label>PE <input type="number" id="pe"></label>
+  <label>PP <input type="number" id="pp"></label>
+</div>
+
+<button onclick="createCharacter()">✅ Créer le personnage</button>
+
+<script src="create-character.js"></script>
