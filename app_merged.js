@@ -167,15 +167,50 @@ function loadCharacter() {
   currentChar = sel.value;
   const c = getCurrentCharacter();
 
+  // Nom
   $('charName').value = currentChar;
+
+  // PV / Capacités
   $('hp').value = c.hp || '';
   $('maxHp').value = c.maxHp || '';
   $('carryCapacity').value = c.carryCapacity || 100;
 
+  // Stats
+  $('for').value = c.stats?.force || 10;
+  $('dex').value = c.stats?.dexterite || 10;
+  $('con').value = c.stats?.constitution || 10;
+  $('int').value = c.stats?.intelligence || 10;
+  $('sag').value = c.stats?.sagesse || 10;
+  $('cha').value = c.stats?.charisme || 10;
+
+  // Bonus de maîtrise, CA, vitesse, dés de vie, perception passive
+  $('prof').value = c.proficiencyBonus || 2;
+  $('ca').value = c.armorClass || 10;
+  $('speed').value = c.speed || 9;
+  $('hitDice').value = c.hitDice || "1d8";
+  $('ppassive').value = c.passivePerception || 0;
+
+  // Jets de sauvegarde
+  document.querySelectorAll("#saves input").forEach(i => {
+    i.checked = c.saves?.includes(i.value) || false;
+  });
+
+  // Compétences
+  document.querySelectorAll("#skills input").forEach(i => {
+    i.checked = c.skills?.includes(i.value) || false;
+  });
+
+  // Items / Inventaire
   items = Array.isArray(c.items) ? c.items : [];
   renderItems();
+
+  // Portemonnaie
   renderMoney();
+
+  // Si PNJ, désactiver les inputs
+  toggleNPC();
 }
+
 
 /* =========================
    INVENTORY
@@ -248,3 +283,4 @@ window.addEventListener('DOMContentLoaded',()=>{
   renderItems();
   renderMoney();
 });
+
