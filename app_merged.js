@@ -60,6 +60,7 @@ function showTab(id) {
   document.querySelectorAll('.tab').forEach(t => t.classList.add('hidden'));
   $(id)?.classList.remove('hidden');
 }
+function gotoo(path) { window.location.href = path; }
 
 /* =========================
    JOURNAL
@@ -223,4 +224,5 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 function addsort() {
+
 
