@@ -12,8 +12,12 @@
 </head>
 <body>
 <!-- D&D -->
+  <div class="nav-buttons">
+  <button onclick="gotoo('Accueil.html')">🏠 Accueil</button>
+  <button onclick="gotoo('create-character.html')">➕ Créer personnage</button>
+  </div>
+
   <section id="dnd" class="tab">
-    <button onclick="gotoo('Accueil.html')">Accueil</button>
     <h2>🎲 Personnage</h2>
     <select id="characterSelect" onchange="loadCharacter()"></select>
     <input id="charName" placeholder="Nom du personnage">
@@ -114,6 +118,7 @@ function changeMoney(type, delta) {
 
 
 </html>
+
 
 
 
