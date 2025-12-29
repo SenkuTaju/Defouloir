@@ -52,5 +52,6 @@ function createCharacter() {
   localStorage.setItem("characters", JSON.stringify(characters));
 
   alert("Personnage créé !");
-  window.location.href = "index.html";
+  window.location.href = "dnd.html";
 }
+
