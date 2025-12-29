@@ -1,4 +1,4 @@
-// app.js — version fusionnée
+// fusion.js — version complète pour DnD + App
 
 const $ = id => document.getElementById(id);
 
@@ -53,10 +53,6 @@ function openApp() {
 /* =========================
    NAV
 ========================= */
-function showTab(id) {
-  document.querySelectorAll('.tab').forEach(t => t.classList.add('hidden'));
-  $(id)?.classList.remove('hidden');
-}
 function gotoo(path) { window.location.href = path; }
 
 /* =========================
@@ -128,7 +124,7 @@ function createCharacter() {
 ========================= */
 function getCurrentCharacter() {
   if (!currentChar) return null;
-  characters[currentChar] = characters[currentChar] || { items: [] };
+  characters[currentChar] = characters[currentChar] || { items: [], stats:{} };
   return characters[currentChar];
 }
 
@@ -147,6 +143,17 @@ function renderCharacters() {
   if (!currentChar && sel.options.length) currentChar = sel.options[0]?.value;
   sel.value = currentChar || '';
   loadCharacter();
+}
+
+function deleteCharacter() {
+  if(!currentChar) return alert("Aucun personnage sélectionné");
+  if(!confirm(`Supprimer ${currentChar} ?`)) return;
+  delete characters[currentChar];
+  localStorage.setItem('characters', JSON.stringify(characters));
+  currentChar = null;
+  renderCharacters();
+  renderItems();
+  renderMoney();
 }
 
 function saveCharacter() {
@@ -210,7 +217,6 @@ function loadCharacter() {
   // Si PNJ, désactiver les inputs
   toggleNPC();
 }
-
 
 /* =========================
    INVENTORY
@@ -282,19 +288,19 @@ window.addEventListener('DOMContentLoaded',()=>{
   renderCharacters();
   renderItems();
   renderMoney();
-   // === Sauvegarde automatique des PV ===
+
+  // === Sauvegarde automatique des PV ===
   ['hp','maxHp'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.addEventListener('input', () => {
-        const c = getCurrentCharacter();
-        if (!c) return;
-        c.hp = $('hp').value;
-        c.maxHp = $('maxHp').value;
-        localStorage.setItem('characters', JSON.stringify(characters));
-      });
-    }
+    const el = $(id);
+    if(el) el.addEventListener('input',()=>{
+      const c = getCurrentCharacter();
+      if(!c) return;
+      c.hp = $('hp').value;
+      c.maxHp = $('maxHp').value;
+      localStorage.setItem('characters',JSON.stringify(characters));
+    });
   });
 });
+
 
 
