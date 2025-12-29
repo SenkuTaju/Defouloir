@@ -2,124 +2,71 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Grimoir et Pantoufles</title>
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#111111">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grimoir & Pantoufles - D&D</title>
   <link rel="stylesheet" href="style.css">
-  <script src="app_merged.js"></script>
+  <meta name="theme-color" content="#111111">
+  <script src="app_merged.js" defer></script>
 </head>
 <body>
-<!-- D&D -->
-  <div class="nav-buttons">
-  <button onclick="gotoo('Accueil.html')">🏠 Accueil</button>
-  <button onclick="gotoo('create-character.html')">➕ Créer personnage</button>
-  </div>
+  <header>
+    <h1>🎲 Gestion du personnage</h1>
+    <div style="margin-bottom:10px;">
+      <button onclick="gotoo('Accueil.html')">🏠 Accueil</button>
+      <button onclick="gotoo('create-character.html')">🧙 Créer un perso</button>
+    </div>
+  </header>
 
-  <section id="dnd" class="tab">
-    <h2>🎲 Personnage</h2>
+  <section id="dnd">
+    <h2>Personnage</h2>
     <select id="characterSelect" onchange="loadCharacter()"></select>
     <input id="charName" placeholder="Nom du personnage">
-    <button onclick="saveCharacter()">💾 Sauver</button>
 
     <h3>PV</h3>
     <div style="display:flex;gap:8px;align-items:center">
       <input type="number" id="hp" placeholder="PV actuels" style="width:120px">
       <input type="number" id="maxHp" placeholder="PV max" style="width:120px">
-      <button onclick="saveHP()">Sauver PV</button>
+      <button onclick="saveHP()">💾 Sauver PV</button>
     </div>
 
-    <h2>Inventaire</h2>
-    <div class="inventory-controls">
+    <h3>Caractéristiques</h3>
+    <div class="grid">
+      <label>Force <input type="number" id="for" style="width:60px"></label>
+      <label>Dextérité <input type="number" id="dex" style="width:60px"></label>
+      <label>Constitution <input type="number" id="con" style="width:60px"></label>
+      <label>Intelligence <input type="number" id="int" style="width:60px"></label>
+      <label>Sagesse <input type="number" id="sag" style="width:60px"></label>
+      <label>Charisme <input type="number" id="cha" style="width:60px"></label>
+    </div>
+
+    <h3>Inventaire</h3>
+    <div style="display:flex;gap:8px;align-items:center">
       <input id="item" placeholder="Nom de l'item">
-      <input type="number" id="itemQty" placeholder="Quantité" min="1" value="1" style="width:80px">
-      <input type="number" id="itemWeight" placeholder="Poids/unité" min="0" step="0.1" value="1" style="width:100px">
+      <input type="number" id="itemQty" placeholder="Quantité" min="1" value="1" style="width:60px">
+      <input type="number" id="itemWeight" placeholder="Poids/unité" min="0" step="0.1" value="1" style="width:60px">
       <button onclick="addItem()">Ajouter</button>
     </div>
-    <div style="margin-top:8px">
+    <div>
       Poids total: <strong id="totalWeight">0</strong>
       / Capacité: <input type="number" id="carryCapacity" value="100" style="width:80px"> kg
     </div>
     <ul id="items"></ul>
-  <section class="card">
-  <h2>💰 Portemonnaie</h2>
 
-  <div class="money">
-    <div>
-      PC
-      <button onclick="changeMoney('pc', -1)">➖</button>
-      <span id="pcVal">0</span>
-      <button onclick="changeMoney('pc', 1)">➕</button>
+    <h3>Portemonnaie 💰</h3>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <div>PC <button onclick="changeMoney('pc',-1)">-</button> <span id="pcVal">0</span> <button onclick="changeMoney('pc',1)">+</button></div>
+      <div>PA <button onclick="changeMoney('pa',-1)">-</button> <span id="paVal">0</span> <button onclick="changeMoney('pa',1)">+</button></div>
+      <div>PO <button onclick="changeMoney('po',-1)">-</button> <span id="poVal">0</span> <button onclick="changeMoney('po',1)">+</button></div>
+      <div>PE <button onclick="changeMoney('pe',-1)">-</button> <span id="peVal">0</span> <button onclick="changeMoney('pe',1)">+</button></div>
+      <div>PP <button onclick="changeMoney('pp',-1)">-</button> <span id="ppVal">0</span> <button onclick="changeMoney('pp',1)">+</button></div>
     </div>
 
-    <div>
-      PA
-      <button onclick="changeMoney('pa', -1)">➖</button>
-      <span id="paVal">0</span>
-      <button onclick="changeMoney('pa', 1)">➕</button>
-    </div>
-
-    <div>
-      PO
-      <button onclick="changeMoney('po', -1)">➖</button>
-      <span id="poVal">0</span>
-      <button onclick="changeMoney('po', 1)">➕</button>
-    </div>
-
-    <div>
-      PE
-      <button onclick="changeMoney('pe', -1)">➖</button>
-      <span id="peVal">0</span>
-      <button onclick="changeMoney('pe', 1)">➕</button>
-    </div>
-
-    <div>
-      PP
-      <button onclick="changeMoney('pp', -1)">➖</button>
-      <span id="ppVal">0</span>
-      <button onclick="changeMoney('pp', 1)">➕</button>
-    </div>
-  </div>
-</section>
-
+    <h3>Données de combat</h3>
+    <label>Classe d’armure <input type="number" id="ca" style="width:60px"></label>
+    <label>Vitesse <input type="number" id="speed" style="width:60px"></label>
+    <label>Dés de vie <input id="hitDice" style="width:60px"></label>
+    <label>Bonus de maîtrise <input type="number" id="prof" style="width:60px"></label>
+    <label>Perception passive <input type="number" id="ppassive" style="width:60px"></label>
   </section>
 </body>
-<script>
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('service-worker.js')
-  .then(() => console.log('Service Worker enregistré'))
-  .catch(err => console.log('Erreur SW', err));
-}
-  function renderMoney() {
-  const c = getCurrentCharacter();
-  if (!c) return;
-
-  c.money = c.money || { pc:0, pa:0, po:0, pe:0, pp:0 };
-
-  ['pc','pa','po','pe','pp'].forEach(k => {
-    const el = document.getElementById(k + 'Val');
-    if (el) el.textContent = c.money[k] || 0;
-  });
-}
-function gotoo(path) { window.location.href = path; }
-function changeMoney(type, delta) {
-  const c = getCurrentCharacter();
-  if (!c) return;
-
-  c.money = c.money || { pc:0, pa:0, po:0, pe:0, pp:0 };
-  c.money[type] = Math.max(0, (c.money[type] || 0) + delta);
-
-  localStorage.setItem('characters', JSON.stringify(characters));
-  renderMoney();
-}
-
-</script>
-
-
 </html>
-
-
-
-
-
