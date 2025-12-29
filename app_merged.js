@@ -282,5 +282,19 @@ window.addEventListener('DOMContentLoaded',()=>{
   renderCharacters();
   renderItems();
   renderMoney();
+   // === Sauvegarde automatique des PV ===
+  ['hp','maxHp'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', () => {
+        const c = getCurrentCharacter();
+        if (!c) return;
+        c.hp = $('hp').value;
+        c.maxHp = $('maxHp').value;
+        localStorage.setItem('characters', JSON.stringify(characters));
+      });
+    }
+  });
 });
+
 
