@@ -10,20 +10,34 @@ function getChecked(containerId) {
 }
 
 function createCharacter() {
-  const name = document.getElementById("charName").value.trim();
+  const charNameEl = document.getElementById("charName");
+  if (!charNameEl) return alert("Impossible de trouver le champ Nom");
+
+  const name = charNameEl.value.trim();
   if (!name) return alert("Nom requis");
+
+  const forEl = document.getElementById("for");
+  const dexEl = document.getElementById("dex");
+  const conEl = document.getElementById("con");
+  const intEl = document.getElementById("int");
+  const sagEl = document.getElementById("sag");
+  const chaEl = document.getElementById("cha");
+
+  if (!forEl || !dexEl || !conEl || !intEl || !sagEl || !chaEl) {
+    return alert("Impossible de trouver les champs de caractéristiques");
+  }
 
   const character = {
     name,
     isNPC: document.getElementById("isNPC").checked,
 
     stats: {
-      force: +document.getElementById("for").value,
-      dexterite: +document.getElementById("dex").value,
-      constitution: +document.getElementById("con").value,
-      intelligence: +document.getElementById("int").value,
-      sagesse: +document.getElementById("sag").value,
-      charisme: +document.getElementById("cha").value
+      force: +forEl.value,
+      dexterite: +dexEl.value,
+      constitution: +conEl.value,
+      intelligence: +intEl.value,
+      sagesse: +sagEl.value,
+      charisme: +chaEl.value
     },
 
     saves: getChecked("saves"),
@@ -54,3 +68,4 @@ function createCharacter() {
   alert("Personnage créé !");
   window.location.href = "dnd.html";
 }
+
